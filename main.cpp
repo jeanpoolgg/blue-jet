@@ -129,11 +129,18 @@ using namespace miniwin;
 
         // Movimiento en el eje X del jugador1
         while(teclaIngresada != ESCAPE){
+
             if(teclaIngresada == IZQUIERDA){
                 jugador1X -= 5;
             }else if (teclaIngresada == DERECHA){
                 jugador1X += 5;
+            }else if (teclaIngresada == ARRIBA){
+                jugador1Y -= 5;
+            }else if (teclaIngresada == ABAJO){
+                jugador1Y += 5;
             }
+
+
             borra();
             jugador1(jugador1X, jugador1Y);
             refresca();
