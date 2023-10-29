@@ -2,6 +2,16 @@
 
 using namespace miniwin;
 
+    void balaJugador1(int x, int y){
+        if(y == 400 | y == 0 ){
+            color_rgb(0,0,0);
+        }else {
+            color_rgb(255, 242, 0);
+            rectangulo_lleno(23 + x, 0 + y, 27 + x, 10 + y);
+        }
+    }
+
+
     void enemigo1 (int x, int y){
 
      color_rgb(255, 225, 223); // GRIS
@@ -235,6 +245,9 @@ void enemigo2 (int x, int y){
         // Coordenadas del jugador1
         int jugador1X = 200, jugador1Y = 300;
 
+        // Coordenadas de la bala del jugador1
+        int bala1X = 200, bala1Y = 400;
+
         // Coordenadas del enemigo1
         int enemigo1X = 50, enemigo1Y = 20;
 
@@ -245,17 +258,18 @@ void enemigo2 (int x, int y){
         int teclaIngresada = tecla();
 
 
+
         // Movimiento en el eje X del jugador1
         while(teclaIngresada != ESCAPE){
 
             if(teclaIngresada == IZQUIERDA){
-                jugador1X -= 5;
+                jugador1X -= 15;
             }else if (teclaIngresada == DERECHA){
-                jugador1X += 5;
+                jugador1X += 15;
             }else if (teclaIngresada == ARRIBA){
-                jugador1Y -= 5;
+                jugador1Y -= 15;
             }else if (teclaIngresada == ABAJO){
-                jugador1Y += 5;
+                jugador1Y += 15;
             }
 
 
@@ -273,11 +287,11 @@ void enemigo2 (int x, int y){
 
             if(direccion == IZQUIERDA){
                 if( enemigo1X > 0){
-                    enemigo1X -= 15;
+                    enemigo1X -= 30;
                 }
             }else if (direccion == DERECHA){
                 if (enemigo1X < 350){
-                    enemigo1X += 15;
+                    enemigo1X += 30;
                 }
             }
 
@@ -303,8 +317,39 @@ void enemigo2 (int x, int y){
             }
 
 
+            if(bala1Y <=0 && teclaIngresada == ESPACIO){
+                bala1X = jugador1X;
+                bala1Y = jugador1Y;
+            }
+
+            if(teclaIngresada == ESPACIO){
+                if(bala1Y >= 390 && bala1Y <= 400){
+                    bala1X = jugador1X, bala1Y -= 10;
+                }
+            }
+
+            if(teclaIngresada == ESPACIO){
+                if(bala1Y <= 391 && bala1Y >= 0){
+                    bala1Y -= 30;
+                }
+            }
+
+            if(bala1X >= enemigo1X - 40 && bala1X <= enemigo1X){
+                if(bala1Y >= 10 && bala1Y <= 45){
+                    enemigo1X = -300, enemigo1Y = -300;
+                }
+            }
+
+             if(bala1X >= enemigo2X - 40 && bala1X <= enemigo2X){
+                if(bala1Y >= 10 && bala1Y <= 45){
+                    enemigo2X = -300, enemigo2Y = -300;
+                }
+            }
+
+
             borra();
             jugador1(jugador1X, jugador1Y);
+            balaJugador1(bala1X, bala1Y);
             enemigo1(enemigo1X, enemigo1Y);
             enemigo2(enemigo2X, enemigo2Y);
             refresca();
