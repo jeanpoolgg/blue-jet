@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1698554960 source:c:\users\kurapika\desktop\blue-jet\miniwin.cpp
+	<fstream>
+	<sstream>
+	<queue>
+	<math.h>
+	<process.h>
+	<windows.h>
+	<windowsx.h>
+	"miniwin.h"
+	<cstdio>
+	<cstdlib>
+	<iostream>
+	<string>
+	<queue>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/Xos.h>
+	<X11/Xatom.h>
+	<X11/keysym.h>
+	"miniwin.h"
+
+1461821620 c:\users\kurapika\desktop\blue-jet\miniwin.h
+	<iostream>
+
+1698556206 source:c:\users\kurapika\desktop\blue-jet\main.cpp
+	"miniwin.h"
+
