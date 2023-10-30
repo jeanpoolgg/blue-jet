@@ -123,7 +123,7 @@ void enemigo2 (int x, int y){
 
 
 
-    int jugador1(int x, int y){
+    void jugador1(int x, int y){
 
         color_rgb(255, 255, 255); // BLANCO
         rectangulo_lleno(18+x, 57+y, 20+x, 76+y);
@@ -246,7 +246,7 @@ void enemigo2 (int x, int y){
         int jugador1X = 200, jugador1Y = 300;
 
         // Coordenadas de la bala del jugador1
-        int bala1X = 200, bala1Y = 400;
+        int bala1X = jugador1X + 8, bala1Y = 400;
 
         // Coordenadas del enemigo1
         int enemigo1X = 50, enemigo1Y = 20;
@@ -257,7 +257,7 @@ void enemigo2 (int x, int y){
         // Valor ingresado al presionar el teclado
         int teclaIngresada = tecla();
 
-
+        bool iniciado = true;
 
         // Movimiento en el eje X del jugador1
         while(teclaIngresada != ESCAPE){
@@ -317,29 +317,28 @@ void enemigo2 (int x, int y){
             }
 
 
+            // Movimiento de la bala
+            bala1X = jugador1X;
             if(bala1Y <=0 && teclaIngresada == ESPACIO){
-                bala1X = jugador1X;
-                bala1Y = jugador1Y;
-            }
-
-            if(teclaIngresada == ESPACIO){
-                if(bala1Y >= 390 && bala1Y <= 400){
-                    bala1X = jugador1X, bala1Y -= 10;
+                bala1Y = jugador1Y + 10;
+            }else if(teclaIngresada == ESPACIO){
+                if(iniciado != true){
+                    bala1Y = bala1Y - 20;
+                }else{
+                    bala1Y = bala1Y - 80;
+                    iniciado = false;
                 }
             }
 
-            if(teclaIngresada == ESPACIO){
-                if(bala1Y <= 391 && bala1Y >= 0){
-                    bala1Y -= 30;
-                }
-            }
-
+            // Colision de la bala con el enemigo1
             if(bala1X >= enemigo1X - 40 && bala1X <= enemigo1X){
                 if(bala1Y >= 10 && bala1Y <= 45){
                     enemigo1X = -300, enemigo1Y = -300;
                 }
             }
 
+
+            // Colision de la bala con el enemigo2
              if(bala1X >= enemigo2X - 40 && bala1X <= enemigo2X){
                 if(bala1Y >= 10 && bala1Y <= 45){
                     enemigo2X = -300, enemigo2Y = -300;
