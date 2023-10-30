@@ -257,7 +257,7 @@ void enemigo2 (int x, int y){
         // Valor ingresado al presionar el teclado
         int teclaIngresada = tecla();
 
-        bool iniciado = true;
+        bool iniciado = false;
 
         // Movimiento en el eje X del jugador1
         while(teclaIngresada != ESCAPE){
@@ -318,16 +318,17 @@ void enemigo2 (int x, int y){
 
 
             // Movimiento de la bala
-            bala1X = jugador1X;
+
             if(bala1Y <=0 && teclaIngresada == ESPACIO){
+                bala1X = jugador1X;
                 bala1Y = jugador1Y + 10;
             }else if(teclaIngresada == ESPACIO){
-                if(iniciado != true){
-                    bala1Y = bala1Y - 20;
-                }else{
-                    bala1Y = bala1Y - 80;
-                    iniciado = false;
-                }
+                bala1Y = bala1Y - 80;
+                iniciado = true;
+            }
+
+            if( iniciado == true){
+                bala1Y = bala1Y - 20;
             }
 
             // Colision de la bala con el enemigo1
